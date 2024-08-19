@@ -1,25 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hamster Kombat key generate</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script> <!-- Adsgram script -->
     <script src="script.js" defer></script> <!-- Your existing script.js -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const AdController = window.Adsgram.init({ blockId: "2080" });
-
-            const startBtn = document.getElementById("startBtn");
-
-            startBtn.addEventListener("click", function() {
-                // Your existing key generation logic will go here
-
-                AdController.showAd(); // Show ad after the button is clicked
-            });
-        });
-    </script>
 </head>
 <body>
     <main class="main-container">
@@ -83,5 +71,25 @@
         </section>
         <button id="creatorChannelBtn" class="button footer-button">Powered by Project Earn Bd</button>
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const AdController = window.Adsgram.init({ blockId: "2080" });
+
+            const startBtn = document.getElementById("startBtn");
+
+            startBtn.addEventListener("click", function() {
+                AdController.show().then((result) => {
+                    // User watched ad till the end
+                    console.log('Ad watched, proceed with generating keys');
+                    // You can call any function from script.js after ad is displayed
+                    generateKeys(); // Assuming generateKeys is a function defined in script.js
+                }).catch((result) => {
+                    // User skipped the ad or there was an error
+                    console.log('Ad not watched, handle accordingly');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
